@@ -10,12 +10,15 @@ A simple Golang library that contains license information from [SPDX](https://sp
 See [spdx.org/licenses](https://spdx.org/licenses) for more details.
 
 ```go
-license, ok := spdx.GetLicense("apache-2.0")
-if ok {
+if license, ok := spdx.LicenseForID("apache-2.0"); ok {
     fmt.Println(license.ID())         // Apache-2.0
     fmt.Println(license.Name())       // Apache License 2.0
     fmt.Println(license.Reference())  // https://spdx.org/licenses/Apache-2.0.html
     fmt.Println(license.DetailsURL()) // https://spdx.org/licenses/Apache-2.0.json
+}
+
+for _, license := range spdx.AllLicenses() {
+    fmt.Println(license)
 }
 ```
 
