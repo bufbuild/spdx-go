@@ -17,7 +17,10 @@
 // See https://spdx.org/licenses.
 package spdx
 
-import "strings"
+import (
+	"sort"
+	"strings"
+)
 
 // License is a SPDX license.
 type License struct {
@@ -43,8 +46,25 @@ type License struct {
 // LicenseForID returns the License for the ID.
 //
 // The input ID is case-insensitive, that is any casing of the ID will
-// result in the correct license.
+// result in the correct License.
 func LicenseForID(id string) (License, bool) {
 	license, ok := lowercaseIDToLicense[strings.ToLower(id)]
 	return license, ok
+}
+
+// AllLicenses returns a slice of all Licenses.
+//
+// This slice will be sorted by License ID.
+func AllLicenses() []License {
+	licenses := make([]License, 0, len(lowercaseIDToLicense))
+	for _, license := range lowercaseIDToLicense {
+		licenses = append(licenses, license)
+	}
+	sort.Slice(
+		licenses,
+		func(i int, j int) bool {
+			return licenses[i].ID < licenses[j].ID
+		},
+	)
+	return licenses
 }
