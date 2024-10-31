@@ -16,6 +16,7 @@ package spdx
 
 import (
 	"reflect"
+	"regexp"
 	"testing"
 )
 
@@ -40,5 +41,19 @@ func TestLicenseForID(t *testing.T) {
 		t.Logf("got: %+v", got)
 		t.Logf("want: %+v", want)
 		t.Fatal("failed to get expected license info")
+	}
+}
+
+func TestIDsMatchExpectedRegext(t *testing.T) {
+	t.Parallel()
+
+	regexp, err := regexp.Compile("^[a-zA-Z0-9-.+]+$")
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	for _, license := range lowercaseIDToLicense {
+		if !regexp.Match([]byte(license.ID)) {
+			t.Fatalf("license ID %q did not match regex", license.ID)
+		}
 	}
 }
