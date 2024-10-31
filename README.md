@@ -30,6 +30,8 @@ for _, license := range spdx.AllLicenses() {
 }
 ```
 
+All IDs are guaranteed to match the regular expression `^[a-zA-Z0-9-.+]+$`.
+
 ## Status: Beta
 
 This repository is still in beta, however will be promoted to stable very soon.
