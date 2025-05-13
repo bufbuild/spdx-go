@@ -44,6 +44,18 @@ func TestLicenseForID(t *testing.T) {
 	}
 }
 
+func TestLicenseForID_Deprecated(t *testing.T) {
+	t.Parallel()
+
+	got, ok := LicenseForID("gpl-3.0")
+	if !ok {
+		t.Fatalf("failed to get license info")
+	}
+	if !got.Deprecated {
+		t.Fatalf("expected license %s to be deprecated", got.ID)
+	}
+}
+
 func TestIDsMatchExpectedRegext(t *testing.T) {
 	t.Parallel()
 

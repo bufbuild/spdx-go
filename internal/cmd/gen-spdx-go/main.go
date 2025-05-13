@@ -159,7 +159,7 @@ type license struct {
 	Reference       string   `json:"reference,omitempty"`
 	ReferenceNumber int      `json:"referenceNumber,omitempty"`
 	DetailsURL      string   `json:"detailsUrl,omitempty"`
-	Deprecated      bool     `json:"isDeprecatedLicenceId,omitempty"`
+	Deprecated      bool     `json:"isDeprecatedLicenseId,omitempty"`
 	SeeAlso         []string `json:"seeAlso,omitempty"`
 	OSIApproved     bool     `json:"isOsiApproved,omitempty"`
 }
