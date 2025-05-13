@@ -131,7 +131,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/AGPL-1.0.html",
 		ReferenceNumber: 374,
 		DetailsURL:      "https://spdx.org/licenses/AGPL-1.0.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"http://www.affero.org/oagpl.html",
 		},
@@ -167,7 +167,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/AGPL-3.0.html",
 		ReferenceNumber: 631,
 		DetailsURL:      "https://spdx.org/licenses/AGPL-3.0.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/agpl.txt",
 			"https://opensource.org/licenses/AGPL-3.0",
@@ -621,7 +621,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/BSD-2-Clause-FreeBSD.html",
 		ReferenceNumber: 56,
 		DetailsURL:      "https://spdx.org/licenses/BSD-2-Clause-FreeBSD.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"http://www.freebsd.org/copyright/freebsd-license.html",
 		},
@@ -633,7 +633,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/BSD-2-Clause-NetBSD.html",
 		ReferenceNumber: 530,
 		DetailsURL:      "https://spdx.org/licenses/BSD-2-Clause-NetBSD.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"http://www.netbsd.org/about/redistribution.html#default",
 		},
@@ -2860,7 +2860,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/GFDL-1.1.html",
 		ReferenceNumber: 195,
 		DetailsURL:      "https://spdx.org/licenses/GFDL-1.1.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt",
 		},
@@ -2944,7 +2944,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/GFDL-1.2.html",
 		ReferenceNumber: 97,
 		DetailsURL:      "https://spdx.org/licenses/GFDL-1.2.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt",
 		},
@@ -3028,7 +3028,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/GFDL-1.3.html",
 		ReferenceNumber: 538,
 		DetailsURL:      "https://spdx.org/licenses/GFDL-1.3.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/fdl-1.3.txt",
 		},
@@ -3136,7 +3136,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/GPL-1.0.html",
 		ReferenceNumber: 601,
 		DetailsURL:      "https://spdx.org/licenses/GPL-1.0.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html",
 		},
@@ -3148,7 +3148,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/GPL-1.0+.html",
 		ReferenceNumber: 442,
 		DetailsURL:      "https://spdx.org/licenses/GPL-1.0+.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html",
 		},
@@ -3184,7 +3184,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/GPL-2.0.html",
 		ReferenceNumber: 473,
 		DetailsURL:      "https://spdx.org/licenses/GPL-2.0.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html",
 			"https://opensource.org/licenses/GPL-2.0",
@@ -3197,7 +3197,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/GPL-2.0+.html",
 		ReferenceNumber: 502,
 		DetailsURL:      "https://spdx.org/licenses/GPL-2.0+.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html",
 			"https://opensource.org/licenses/GPL-2.0",
@@ -3237,7 +3237,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/GPL-2.0-with-GCC-exception.html",
 		ReferenceNumber: 54,
 		DetailsURL:      "https://spdx.org/licenses/GPL-2.0-with-GCC-exception.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://gcc.gnu.org/git/?p=gcc.git;a=blob;f=gcc/libgcc1.c;h=762f5143fc6eed57b6797c82710f3538aa52b40b;hb=cb143a3ce4fb417c68f5fa2691a1b1b1053dfba9#l10",
 		},
@@ -3249,7 +3249,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/GPL-2.0-with-autoconf-exception.html",
 		ReferenceNumber: 333,
 		DetailsURL:      "https://spdx.org/licenses/GPL-2.0-with-autoconf-exception.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"http://ac-archive.sourceforge.net/doc/copyright.html",
 		},
@@ -3261,7 +3261,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/GPL-2.0-with-bison-exception.html",
 		ReferenceNumber: 117,
 		DetailsURL:      "https://spdx.org/licenses/GPL-2.0-with-bison-exception.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"http://git.savannah.gnu.org/cgit/bison.git/tree/data/yacc.c?id=193d7c7054ba7197b0789e14965b739162319b5e#n141",
 		},
@@ -3273,7 +3273,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/GPL-2.0-with-classpath-exception.html",
 		ReferenceNumber: 144,
 		DetailsURL:      "https://spdx.org/licenses/GPL-2.0-with-classpath-exception.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/software/classpath/license.html",
 		},
@@ -3285,7 +3285,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/GPL-2.0-with-font-exception.html",
 		ReferenceNumber: 286,
 		DetailsURL:      "https://spdx.org/licenses/GPL-2.0-with-font-exception.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/gpl-faq.html#FontException",
 		},
@@ -3297,7 +3297,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/GPL-3.0.html",
 		ReferenceNumber: 233,
 		DetailsURL:      "https://spdx.org/licenses/GPL-3.0.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/gpl-3.0-standalone.html",
 			"https://opensource.org/licenses/GPL-3.0",
@@ -3310,7 +3310,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/GPL-3.0+.html",
 		ReferenceNumber: 201,
 		DetailsURL:      "https://spdx.org/licenses/GPL-3.0+.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/gpl-3.0-standalone.html",
 			"https://opensource.org/licenses/GPL-3.0",
@@ -3349,7 +3349,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/GPL-3.0-with-GCC-exception.html",
 		ReferenceNumber: 331,
 		DetailsURL:      "https://spdx.org/licenses/GPL-3.0-with-GCC-exception.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/gcc-exception-3.1.html",
 		},
@@ -3361,7 +3361,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/GPL-3.0-with-autoconf-exception.html",
 		ReferenceNumber: 121,
 		DetailsURL:      "https://spdx.org/licenses/GPL-3.0-with-autoconf-exception.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/autoconf-exception-3.0.html",
 		},
@@ -4012,7 +4012,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/LGPL-2.0.html",
 		ReferenceNumber: 452,
 		DetailsURL:      "https://spdx.org/licenses/LGPL-2.0.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/old-licenses/lgpl-2.0-standalone.html",
 		},
@@ -4024,7 +4024,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/LGPL-2.0+.html",
 		ReferenceNumber: 342,
 		DetailsURL:      "https://spdx.org/licenses/LGPL-2.0+.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/old-licenses/lgpl-2.0-standalone.html",
 		},
@@ -4060,7 +4060,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/LGPL-2.1.html",
 		ReferenceNumber: 394,
 		DetailsURL:      "https://spdx.org/licenses/LGPL-2.1.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
 			"https://opensource.org/licenses/LGPL-2.1",
@@ -4073,7 +4073,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/LGPL-2.1+.html",
 		ReferenceNumber: 12,
 		DetailsURL:      "https://spdx.org/licenses/LGPL-2.1+.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
 			"https://opensource.org/licenses/LGPL-2.1",
@@ -4112,7 +4112,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/LGPL-3.0.html",
 		ReferenceNumber: 636,
 		DetailsURL:      "https://spdx.org/licenses/LGPL-3.0.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/lgpl-3.0-standalone.html",
 			"https://www.gnu.org/licenses/lgpl+gpl-3.0.txt",
@@ -4126,7 +4126,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/LGPL-3.0+.html",
 		ReferenceNumber: 255,
 		DetailsURL:      "https://spdx.org/licenses/LGPL-3.0+.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/lgpl-3.0-standalone.html",
 			"https://www.gnu.org/licenses/lgpl+gpl-3.0.txt",
@@ -5226,7 +5226,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/Nunit.html",
 		ReferenceNumber: 471,
 		DetailsURL:      "https://spdx.org/licenses/Nunit.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://fedoraproject.org/wiki/Licensing/Nunit",
 		},
@@ -6555,7 +6555,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/StandardML-NJ.html",
 		ReferenceNumber: 510,
 		DetailsURL:      "https://spdx.org/licenses/StandardML-NJ.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.smlnj.org/license.html",
 		},
@@ -7304,7 +7304,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/bzip2-1.0.5.html",
 		ReferenceNumber: 283,
 		DetailsURL:      "https://spdx.org/licenses/bzip2-1.0.5.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://sourceware.org/bzip2/1.0.5/bzip2-manual-1.0.5.html",
 			"http://bzip.org/1.0.5/bzip2-manual-1.0.5.html",
@@ -7427,7 +7427,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/eCos-2.0.html",
 		ReferenceNumber: 173,
 		DetailsURL:      "https://spdx.org/licenses/eCos-2.0.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://www.gnu.org/licenses/ecos-license.html",
 		},
@@ -7804,7 +7804,7 @@ var lowercaseIDToLicense = map[string]License{
 		Reference:       "https://spdx.org/licenses/wxWindows.html",
 		ReferenceNumber: 274,
 		DetailsURL:      "https://spdx.org/licenses/wxWindows.json",
-		Deprecated:      false,
+		Deprecated:      true,
 		SeeAlso: []string{
 			"https://opensource.org/licenses/WXwindows",
 		},
