@@ -17,6 +17,8 @@ package spdx
 import (
 	"reflect"
 	"regexp"
+	"slices"
+	"strings"
 	"testing"
 )
 
@@ -63,9 +65,88 @@ func TestIDsMatchExpectedRegext(t *testing.T) {
 	if err != nil {
 		t.Fatal(err.Error())
 	}
-	for _, license := range lowercaseIDToLicense {
+	for _, license := range AllLicenses() {
 		if !regexp.Match([]byte(license.ID)) {
 			t.Fatalf("license ID %q did not match regex", license.ID)
+		}
+	}
+}
+
+func TestLicenseForID_CaseInsensitive(t *testing.T) {
+	t.Parallel()
+
+	for _, license := range AllLicenses() {
+		for _, id := range []string{license.ID, strings.ToLower(license.ID), strings.ToUpper(license.ID)} {
+			got, ok := LicenseForID(id)
+			if !ok {
+				t.Fatalf("failed to get license info for %q", id)
+			}
+			if !reflect.DeepEqual(got, license) {
+				t.Fatalf("got %+v for %q, want %+v", got, id, license)
+			}
+		}
+	}
+}
+
+func TestLicenseForID_NotFound(t *testing.T) {
+	t.Parallel()
+
+	for _, id := range []string{"", "not-a-license", "apache-2.0x", "apache-2", " MIT", "zzzz", "Apache\r2.0"} {
+		if license, ok := LicenseForID(id); ok {
+			t.Fatalf("expected no license for %q, got %+v", id, license)
+		}
+	}
+}
+
+func TestAllLicenses_SortedByID(t *testing.T) {
+	t.Parallel()
+
+	licenses := AllLicenses()
+	if len(licenses) == 0 {
+		t.Fatal("expected licenses")
+	}
+	if !slices.IsSortedFunc(licenses, func(a License, b License) int {
+		return strings.Compare(a.ID, b.ID)
+	}) {
+		t.Fatal("expected licenses to be sorted by ID")
+	}
+}
+
+func TestLicenseEntriesSortedByLowercaseID(t *testing.T) {
+	t.Parallel()
+
+	for i := 1; i < len(licenseEntriesByLowercaseID); i++ {
+		previous, current := licenseEntriesByLowercaseID[i-1].id, licenseEntriesByLowercaseID[i].id
+		if strings.ToLower(previous) >= strings.ToLower(current) {
+			t.Fatalf("licenseEntriesByLowercaseID not strictly sorted by lowercase ID: %q, %q", previous, current)
+		}
+	}
+}
+
+func TestCompareASCIIFold(t *testing.T) {
+	t.Parallel()
+
+	testCases := []struct {
+		a    string
+		b    string
+		want int
+	}{
+		{"", "", 0},
+		{"MIT", "mit", 0},
+		{"a", "B", -1},
+		{"B", "a", 1},
+		{"abc", "ABCD", -1},
+		{"ABCD", "abc", 1},
+		{"Zlib", "zlib-acknowledgement", -1},
+		{"0BSD", "aal", -1},
+	}
+	for _, testCase := range testCases {
+		if got := compareASCIIFold(testCase.a, testCase.b); got != testCase.want {
+			t.Errorf("compareASCIIFold(%q, %q) = %d, want %d", testCase.a, testCase.b, got, testCase.want)
+		}
+		want := strings.Compare(strings.ToLower(testCase.a), strings.ToLower(testCase.b))
+		if got := compareASCIIFold(testCase.a, testCase.b); got != want {
+			t.Errorf("compareASCIIFold(%q, %q) = %d, strings.Compare on lowercase = %d", testCase.a, testCase.b, got, want)
 		}
 	}
 }

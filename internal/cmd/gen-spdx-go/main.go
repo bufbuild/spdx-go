@@ -24,14 +24,16 @@ import (
 	"io"
 	"net/http"
 	"os"
-	"sort"
+	"slices"
 	"strconv"
 	"strings"
+	"unicode"
 )
 
 const (
 	programName        = "gen-spdx-go"
 	licenseListVersion = "v3.23"
+	referenceURLPrefix = "https://spdx.org/licenses/"
 )
 
 var (
@@ -79,33 +81,53 @@ const LicenseListVersion = `)
 	_, _ = buffer.WriteString(strconv.Quote(licenseListVersion))
 	_, _ = buffer.WriteString(`
 
-// lowercaseIDToLicense contains a map from lowercased ID to License.
+// licenseEntry is the stored representation of a License.
+//
+// Reference and DetailsURL are omitted because they are derived from the ID.
+type licenseEntry struct {
+	id              string
+	name            string
+	referenceNumber int
+	deprecated      bool
+	osiApproved     bool
+	seeAlso         []string
+}
+
+// licenseEntriesByLowercaseID contains all licenses sorted by lowercased ID.
 //
 // Licenses will be unique by License ID in a case-insensitive manner.
-var lowercaseIDToLicense = map[string]License{
+var licenseEntriesByLowercaseID = [...]licenseEntry{
 `)
 	for _, license := range licenses {
-		writeLicense(buffer, license)
+		if err := writeLicenseEntry(buffer, license); err != nil {
+			return nil, err
+		}
 	}
 	_, _ = buffer.WriteString("}")
 	return format.Source(buffer.Bytes())
 }
 
-func writeLicense(buffer *bytes.Buffer, license license) {
-	_, _ = buffer.WriteString(strconv.Quote(strings.ToLower(license.ID)) + `: {` + "\n")
-	_, _ = buffer.WriteString("ID: " + strconv.Quote(license.ID) + ", " + "\n")
-	_, _ = buffer.WriteString("Name: " + strconv.Quote(license.Name) + ", " + "\n")
-	_, _ = buffer.WriteString("Reference: " + strconv.Quote(license.Reference) + ", " + "\n")
-	_, _ = buffer.WriteString("ReferenceNumber: " + strconv.Itoa(license.ReferenceNumber) + ", " + "\n")
-	_, _ = buffer.WriteString("DetailsURL: " + strconv.Quote(license.DetailsURL) + ", " + "\n")
-	_, _ = buffer.WriteString("Deprecated: " + strconv.FormatBool(license.Deprecated) + ", " + "\n")
-	_, _ = buffer.WriteString("SeeAlso: []string{" + "\n")
+func writeLicenseEntry(buffer *bytes.Buffer, license license) error {
+	// The runtime derives these URLs from the ID instead of storing them.
+	if expected := referenceURLPrefix + license.ID + ".html"; license.Reference != expected {
+		return fmt.Errorf("license %q: expected reference %q, got %q", license.ID, expected, license.Reference)
+	}
+	if expected := referenceURLPrefix + license.ID + ".json"; license.DetailsURL != expected {
+		return fmt.Errorf("license %q: expected details URL %q, got %q", license.ID, expected, license.DetailsURL)
+	}
+	_, _ = buffer.WriteString("{\n")
+	_, _ = buffer.WriteString("id: " + strconv.Quote(license.ID) + ",\n")
+	_, _ = buffer.WriteString("name: " + strconv.Quote(license.Name) + ",\n")
+	_, _ = buffer.WriteString("referenceNumber: " + strconv.Itoa(license.ReferenceNumber) + ",\n")
+	_, _ = buffer.WriteString("deprecated: " + strconv.FormatBool(license.Deprecated) + ",\n")
+	_, _ = buffer.WriteString("osiApproved: " + strconv.FormatBool(license.OSIApproved) + ",\n")
+	_, _ = buffer.WriteString("seeAlso: []string{\n")
 	for _, seeAlso := range license.SeeAlso {
-		_, _ = buffer.WriteString(strconv.Quote(seeAlso) + ", " + "\n")
+		_, _ = buffer.WriteString(strconv.Quote(seeAlso) + ",\n")
 	}
 	_, _ = buffer.WriteString("},\n")
-	_, _ = buffer.WriteString("OSIApproved: " + strconv.FormatBool(license.OSIApproved) + ", " + "\n")
 	_, _ = buffer.WriteString("},\n")
+	return nil
 }
 
 func getLicenses(ctx context.Context) (_ []license, retErr error) {
@@ -133,16 +155,20 @@ func getLicenses(ctx context.Context) (_ []license, retErr error) {
 	}
 	lowercaseIDMap := make(map[string]struct{})
 	for _, license := range licenseList.Licenses {
+		if strings.ContainsFunc(license.ID, func(r rune) bool { return r > unicode.MaxASCII }) {
+			return nil, fmt.Errorf("non-ASCII ID: %q", license.ID)
+		}
 		lowercaseID := strings.ToLower(license.ID)
 		if _, ok := lowercaseIDMap[lowercaseID]; ok {
 			return nil, fmt.Errorf("duplicate lowercase ID: %q", lowercaseID)
 		}
 		lowercaseIDMap[lowercaseID] = struct{}{}
 	}
-	sort.Slice(
+	// LicenseForID binary searches on the lowercased ID.
+	slices.SortFunc(
 		licenseList.Licenses,
-		func(i int, j int) bool {
-			return licenseList.Licenses[i].ID < licenseList.Licenses[j].ID
+		func(a license, b license) int {
+			return strings.Compare(strings.ToLower(a.ID), strings.ToLower(b.ID))
 		},
 	)
 	return licenseList.Licenses, nil
