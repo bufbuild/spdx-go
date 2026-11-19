@@ -1,7 +1,6 @@
 # spdx-go
 
 [![Build](https://github.com/bufbuild/spdx-go/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/bufbuild/spdx-go/actions/workflows/ci.yaml)
-[![Report Card](https://goreportcard.com/badge/buf.build/go/spdx)](https://goreportcard.com/report/buf.build/go/spdx)
 [![GoDoc](https://pkg.go.dev/badge/buf.build/go/spdx.svg)](https://pkg.go.dev/buf.build/go/spdx)
 [![Slack](https://img.shields.io/badge/slack-buf-%23e01563)](https://buf.build/links/slack)
 
